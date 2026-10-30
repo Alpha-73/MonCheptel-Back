@@ -1,0 +1,13 @@
+Objet : MonCheptel — votre adresse de connexion a changé
+
+Bonjour {{nom}},
+
+L'adresse de connexion de votre compte MonCheptel vient d'être remplacée par :
+
+        {{nouvelleAdresse}}
+
+Cette adresse-ci n'ouvre donc plus le compte.
+
+SI VOUS N'AVEZ RIEN FAIT, appelez l'administration au +223 73 53 87 94 : quelqu'un a pris la main sur votre compte.
+
+L'équipe MonCheptel

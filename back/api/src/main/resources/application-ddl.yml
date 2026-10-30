@@ -1,0 +1,32 @@
+# =====================================================================
+#  Profil de DIAGNOSTIC — ne sert qu'a une chose
+#
+#  Il demande a Hibernate d'ecrire, dans un fichier, le schema SQL qu'il
+#  attend d'apres les entites. On peut alors le comparer a nos migrations
+#  et trouver TOUS les ecarts d'un coup, au lieu de les decouvrir un par
+#  un a chaque demarrage.
+#
+#  A lancer avec les deux profils, dev en premier :
+#
+#      mvn spring-boot:run "-Dspring-boot.run.profiles=dev,ddl"
+#
+#  L'application s'arrete juste apres avoir ecrit le fichier
+#  schema-attendu-par-hibernate.sql a la racine du dossier api.
+#  Ce profil ne touche PAS a la base : ddl-auto est a none et Flyway est
+#  desactive.
+# =====================================================================
+
+spring:
+  jpa:
+    hibernate:
+      # none, et pas validate : on veut le schema attendu, pas un echec au
+      # premier ecart.
+      ddl-auto: none
+    properties:
+      jakarta.persistence.schema-generation.scripts.action: create
+      jakarta.persistence.schema-generation.scripts.create-target: schema-attendu-par-hibernate.sql
+      # Sans ce reglage, Hibernate ecrit tout sur une seule ligne.
+      hibernate.hbm2ddl.delimiter: ";"
+      hibernate.format_sql: true
+  flyway:
+    enabled: false
