@@ -1,0 +1,2160 @@
+{
+ "brut": {
+  "EntiteBase": {
+   "parent": null,
+   "champs": {
+    "id": {
+     "type": "Long",
+     "assoc": null
+    },
+    "dateCreation": {
+     "type": "Instant",
+     "assoc": null
+    },
+    "dateModification": {
+     "type": "Instant",
+     "assoc": null
+    }
+   },
+   "entite": false,
+   "super": true
+  },
+  "EvenementSanitaire": {
+   "parent": "EntiteBase",
+   "champs": {
+    "unite": {
+     "type": "UniteElevage",
+     "assoc": "ManyToOne"
+    },
+    "type": {
+     "type": "TypeEvenement",
+     "assoc": null
+    },
+    "dateEvenement": {
+     "type": "LocalDate",
+     "assoc": null
+    },
+    "produitObservation": {
+     "type": "String",
+     "assoc": null
+    },
+    "auteur": {
+     "type": "Utilisateur",
+     "assoc": "ManyToOne"
+    },
+    "veterinaire": {
+     "type": "Veterinaire",
+     "assoc": "ManyToOne"
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "PosteCout": {
+   "parent": "EntiteBase",
+   "champs": {
+    "typeElevage": {
+     "type": "TypeElevage",
+     "assoc": "ManyToOne"
+    },
+    "libelle": {
+     "type": "String",
+     "assoc": null
+    },
+    "montant": {
+     "type": "long",
+     "assoc": null
+    },
+    "unite": {
+     "type": "String",
+     "assoc": null
+    },
+    "phase": {
+     "type": "PhaseCout",
+     "assoc": null
+    },
+    "modeQuantite": {
+     "type": "ModeQuantite",
+     "assoc": null
+    },
+    "coefficient": {
+     "type": "BigDecimal",
+     "assoc": null
+    },
+    "ordre": {
+     "type": "int",
+     "assoc": null
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "TypeElevage": {
+   "parent": "EntiteBase",
+   "champs": {
+    "filiere": {
+     "type": "Filiere",
+     "assoc": null
+    },
+    "libelle": {
+     "type": "String",
+     "assoc": null
+    },
+    "dureeCycleJours": {
+     "type": "Integer",
+     "assoc": null
+    },
+    "modeEvaluation": {
+     "type": "ModeEvaluation",
+     "assoc": null
+    },
+    "capaciteReference": {
+     "type": "int",
+     "assoc": null
+    },
+    "espaceParSujetM2": {
+     "type": "BigDecimal",
+     "assoc": null
+    },
+    "temperatureMin": {
+     "type": "Integer",
+     "assoc": null
+    },
+    "temperatureMax": {
+     "type": "Integer",
+     "assoc": null
+    },
+    "alimentParSujetKg": {
+     "type": "BigDecimal",
+     "assoc": null
+    },
+    "eauParSujetJourL": {
+     "type": "BigDecimal",
+     "assoc": null
+    },
+    "vaccinsObligatoires": {
+     "type": "String",
+     "assoc": null
+    },
+    "tauxMortalite": {
+     "type": "BigDecimal",
+     "assoc": null
+    },
+    "difficulte": {
+     "type": "NiveauDifficulte",
+     "assoc": null
+    },
+    "actif": {
+     "type": "boolean",
+     "assoc": null
+    },
+    "postesCout": {
+     "type": "List<PosteCout>",
+     "assoc": "OneToMany"
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "JetonAppareil": {
+   "parent": "EntiteBase",
+   "champs": {
+    "utilisateur": {
+     "type": "Utilisateur",
+     "assoc": "ManyToOne"
+    },
+    "jeton": {
+     "type": "String",
+     "assoc": null
+    },
+    "plateforme": {
+     "type": "String",
+     "assoc": null
+    },
+    "actif": {
+     "type": "boolean",
+     "assoc": null
+    },
+    "derniereUtilisation": {
+     "type": "Instant",
+     "assoc": null
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "Zone": {
+   "parent": "EntiteBase",
+   "champs": {
+    "nom": {
+     "type": "String",
+     "assoc": null
+    },
+    "region": {
+     "type": "String",
+     "assoc": null
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "MouvementCheptel": {
+   "parent": "EntiteBase",
+   "champs": {
+    "unite": {
+     "type": "UniteElevage",
+     "assoc": "ManyToOne"
+    },
+    "type": {
+     "type": "TypeMouvement",
+     "assoc": null
+    },
+    "dateMouvement": {
+     "type": "LocalDate",
+     "assoc": null
+    },
+    "nombreTetes": {
+     "type": "int",
+     "assoc": null
+    },
+    "observation": {
+     "type": "String",
+     "assoc": null
+    },
+    "montant": {
+     "type": "Long",
+     "assoc": null
+    },
+    "auteur": {
+     "type": "Utilisateur",
+     "assoc": "ManyToOne"
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "Notification": {
+   "parent": "EntiteBase",
+   "champs": {
+    "destinataire": {
+     "type": "Utilisateur",
+     "assoc": "ManyToOne"
+    },
+    "type": {
+     "type": "TypeNotification",
+     "assoc": null
+    },
+    "titre": {
+     "type": "String",
+     "assoc": null
+    },
+    "corps": {
+     "type": "String",
+     "assoc": null
+    },
+    "lue": {
+     "type": "boolean",
+     "assoc": null
+    },
+    "referenceType": {
+     "type": "String",
+     "assoc": null
+    },
+    "referenceId": {
+     "type": "Long",
+     "assoc": null
+    },
+    "statutEnvoi": {
+     "type": "StatutEnvoi",
+     "assoc": null
+    },
+    "dateEnvoi": {
+     "type": "Instant",
+     "assoc": null
+    },
+    "tentativesEnvoi": {
+     "type": "int",
+     "assoc": null
+    },
+    "erreurEnvoi": {
+     "type": "String",
+     "assoc": null
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "SignalementMaladie": {
+   "parent": "EntiteBase",
+   "champs": {
+    "eleveur": {
+     "type": "Eleveur",
+     "assoc": "ManyToOne"
+    },
+    "unite": {
+     "type": "UniteElevage",
+     "assoc": "ManyToOne"
+    },
+    "symptomes": {
+     "type": "Set<Long>",
+     "assoc": "ElementCollection"
+    },
+    "trancheEffectif": {
+     "type": "TrancheEffectif",
+     "assoc": null
+    },
+    "precision": {
+     "type": "String",
+     "assoc": null
+    },
+    "dateSignalement": {
+     "type": "Instant",
+     "assoc": null
+    },
+    "maladieProbable": {
+     "type": "Maladie",
+     "assoc": "ManyToOne"
+    },
+    "probabilite": {
+     "type": "BigDecimal",
+     "assoc": null
+    },
+    "maladieAlternative": {
+     "type": "Maladie",
+     "assoc": "ManyToOne"
+    },
+    "probabiliteAlternative": {
+     "type": "BigDecimal",
+     "assoc": null
+    },
+    "gravite": {
+     "type": "NiveauGravite",
+     "assoc": null
+    },
+    "statut": {
+     "type": "StatutSignalement",
+     "assoc": null
+    },
+    "veterinaire": {
+     "type": "Veterinaire",
+     "assoc": "ManyToOne"
+    },
+    "dateOrientation": {
+     "type": "Instant",
+     "assoc": null
+    },
+    "dateTraitement": {
+     "type": "Instant",
+     "assoc": null
+    },
+    "compteRendu": {
+     "type": "String",
+     "assoc": null
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "Maladie": {
+   "parent": "EntiteBase",
+   "champs": {
+    "nom": {
+     "type": "String",
+     "assoc": null
+    },
+    "gravite": {
+     "type": "NiveauGravite",
+     "assoc": null
+    },
+    "filieres": {
+     "type": "Set<Filiere>",
+     "assoc": "ElementCollection"
+    },
+    "symptomesTexte": {
+     "type": "String",
+     "assoc": null
+    },
+    "traitement": {
+     "type": "String",
+     "assoc": null
+    },
+    "orienteVersVeterinaire": {
+     "type": "boolean",
+     "assoc": null
+    },
+    "active": {
+     "type": "boolean",
+     "assoc": null
+    },
+    "symptomes": {
+     "type": "Set<MaladieSymptome>",
+     "assoc": "OneToMany"
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "CodeReinitialisation": {
+   "parent": "EntiteBase",
+   "champs": {
+    "utilisateur": {
+     "type": "Utilisateur",
+     "assoc": "ManyToOne"
+    },
+    "empreinteCode": {
+     "type": "String",
+     "assoc": null
+    },
+    "expireLe": {
+     "type": "Instant",
+     "assoc": null
+    },
+    "utilise": {
+     "type": "boolean",
+     "assoc": null
+    },
+    "tentatives": {
+     "type": "int",
+     "assoc": null
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "Veterinaire": {
+   "parent": "Utilisateur",
+   "champs": {
+    "zoneIntervention": {
+     "type": "Zone",
+     "assoc": "ManyToOne"
+    },
+    "titre": {
+     "type": "String",
+     "assoc": null
+    },
+    "specialite": {
+     "type": "String",
+     "assoc": null
+    },
+    "disponible": {
+     "type": "boolean",
+     "assoc": null
+    },
+    "competences": {
+     "type": "Set<Competence>",
+     "assoc": "OneToMany"
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "OperationFinanciere": {
+   "parent": "EntiteBase",
+   "champs": {
+    "eleveur": {
+     "type": "Eleveur",
+     "assoc": "ManyToOne"
+    },
+    "type": {
+     "type": "TypeOperation",
+     "assoc": null
+    },
+    "categorie": {
+     "type": "CategorieOperation",
+     "assoc": null
+    },
+    "filiere": {
+     "type": "Filiere",
+     "assoc": null
+    },
+    "unite": {
+     "type": "UniteElevage",
+     "assoc": "ManyToOne"
+    },
+    "montant": {
+     "type": "long",
+     "assoc": null
+    },
+    "dateOperation": {
+     "type": "LocalDate",
+     "assoc": null
+    },
+    "note": {
+     "type": "String",
+     "assoc": null
+    },
+    "mouvement": {
+     "type": "MouvementCheptel",
+     "assoc": null
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "MaladieSymptome": {
+   "parent": "EntiteBase",
+   "champs": {
+    "maladie": {
+     "type": "Maladie",
+     "assoc": "ManyToOne"
+    },
+    "symptome": {
+     "type": "Symptome",
+     "assoc": "ManyToOne"
+    },
+    "poids": {
+     "type": "BigDecimal",
+     "assoc": null
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "Utilisateur": {
+   "parent": "EntiteBase",
+   "champs": {
+    "nom": {
+     "type": "String",
+     "assoc": null
+    },
+    "email": {
+     "type": "String",
+     "assoc": null
+    },
+    "telephone": {
+     "type": "String",
+     "assoc": null
+    },
+    "motDePasse": {
+     "type": "String",
+     "assoc": null
+    },
+    "zone": {
+     "type": "Zone",
+     "assoc": "ManyToOne"
+    },
+    "langue": {
+     "type": "Langue",
+     "assoc": null
+    },
+    "actif": {
+     "type": "boolean",
+     "assoc": null
+    },
+    "dateInscription": {
+     "type": "LocalDate",
+     "assoc": null
+    },
+    "derniereConnexion": {
+     "type": "Instant",
+     "assoc": null
+    },
+    "tentativesEchouees": {
+     "type": "int",
+     "assoc": null
+    },
+    "verrouilleJusquA": {
+     "type": "Instant",
+     "assoc": null
+    },
+    "doitChangerMotDePasse": {
+     "type": "boolean",
+     "assoc": null
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "UniteElevage": {
+   "parent": "EntiteBase",
+   "champs": {
+    "code": {
+     "type": "String",
+     "assoc": null
+    },
+    "proprietaire": {
+     "type": "Eleveur",
+     "assoc": "ManyToOne"
+    },
+    "typeElevage": {
+     "type": "TypeElevage",
+     "assoc": "ManyToOne"
+    },
+    "statut": {
+     "type": "StatutUnite",
+     "assoc": null
+    },
+    "dateEntree": {
+     "type": "LocalDate",
+     "assoc": null
+    },
+    "dateSortie": {
+     "type": "LocalDate",
+     "assoc": null
+    },
+    "note": {
+     "type": "String",
+     "assoc": null
+    },
+    "mouvements": {
+     "type": "List<MouvementCheptel>",
+     "assoc": "OneToMany"
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "Administrateur": {
+   "parent": "Utilisateur",
+   "champs": {},
+   "entite": true,
+   "super": false
+  },
+  "Eleveur": {
+   "parent": "Utilisateur",
+   "champs": {
+    "filieresPratiquees": {
+     "type": "Set<Filiere>",
+     "assoc": "ElementCollection"
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "Competence": {
+   "parent": "EntiteBase",
+   "champs": {
+    "veterinaire": {
+     "type": "Veterinaire",
+     "assoc": "ManyToOne"
+    },
+    "maladie": {
+     "type": "Maladie",
+     "assoc": "ManyToOne"
+    },
+    "dateDeclaration": {
+     "type": "LocalDate",
+     "assoc": null
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "Animal": {
+   "parent": "UniteElevage",
+   "champs": {
+    "race": {
+     "type": "String",
+     "assoc": null
+    },
+    "sexe": {
+     "type": "Sexe",
+     "assoc": null
+    },
+    "dateNaissance": {
+     "type": "LocalDate",
+     "assoc": null
+    },
+    "present": {
+     "type": "int",
+     "assoc": null
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "RappelSanitaire": {
+   "parent": "EntiteBase",
+   "champs": {
+    "unite": {
+     "type": "UniteElevage",
+     "assoc": "ManyToOne"
+    },
+    "calendrier": {
+     "type": "CalendrierSanitaire",
+     "assoc": "ManyToOne"
+    },
+    "libelle": {
+     "type": "String",
+     "assoc": null
+    },
+    "dateEcheance": {
+     "type": "LocalDate",
+     "assoc": null
+    },
+    "statut": {
+     "type": "StatutRappel",
+     "assoc": null
+    },
+    "evenement": {
+     "type": "EvenementSanitaire",
+     "assoc": "ManyToOne"
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "Symptome": {
+   "parent": "EntiteBase",
+   "champs": {
+    "libelle": {
+     "type": "String",
+     "assoc": null
+    },
+    "ordre": {
+     "type": "int",
+     "assoc": null
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "Lot": {
+   "parent": "UniteElevage",
+   "champs": {
+    "effectifInitial": {
+     "type": "int",
+     "assoc": null
+    },
+    "effectifRestant": {
+     "type": "int",
+     "assoc": null
+    },
+    "dateCloturePrevue": {
+     "type": "LocalDate",
+     "assoc": null
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "Alerte": {
+   "parent": "EntiteBase",
+   "champs": {
+    "maladie": {
+     "type": "Maladie",
+     "assoc": "ManyToOne"
+    },
+    "zone": {
+     "type": "Zone",
+     "assoc": "ManyToOne"
+    },
+    "filiere": {
+     "type": "Filiere",
+     "assoc": null
+    },
+    "message": {
+     "type": "String",
+     "assoc": null
+    },
+    "portee": {
+     "type": "int",
+     "assoc": null
+    },
+    "dateDeclenchement": {
+     "type": "Instant",
+     "assoc": null
+    },
+    "dateCloture": {
+     "type": "Instant",
+     "assoc": null
+    },
+    "statut": {
+     "type": "StatutAlerte",
+     "assoc": null
+    },
+    "administrateur": {
+     "type": "Administrateur",
+     "assoc": "ManyToOne"
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "CalendrierSanitaire": {
+   "parent": "EntiteBase",
+   "champs": {
+    "typeElevage": {
+     "type": "TypeElevage",
+     "assoc": "ManyToOne"
+    },
+    "libelle": {
+     "type": "String",
+     "assoc": null
+    },
+    "typeEvenement": {
+     "type": "TypeEvenement",
+     "assoc": null
+    },
+    "jourDuCycle": {
+     "type": "int",
+     "assoc": null
+    },
+    "obligatoire": {
+     "type": "boolean",
+     "assoc": null
+    },
+    "ordre": {
+     "type": "int",
+     "assoc": null
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "Session": {
+   "parent": "EntiteBase",
+   "champs": {
+    "utilisateur": {
+     "type": "Utilisateur",
+     "assoc": "ManyToOne"
+    },
+    "empreinteJeton": {
+     "type": "String",
+     "assoc": null
+    },
+    "expireLe": {
+     "type": "Instant",
+     "assoc": null
+    },
+    "revoquee": {
+     "type": "boolean",
+     "assoc": null
+    },
+    "appareil": {
+     "type": "String",
+     "assoc": null
+    },
+    "adresseIp": {
+     "type": "String",
+     "assoc": null
+    }
+   },
+   "entite": true,
+   "super": false
+  },
+  "Conseil": {
+   "parent": "EntiteBase",
+   "champs": {
+    "titre": {
+     "type": "String",
+     "assoc": null
+    },
+    "contenu": {
+     "type": "String",
+     "assoc": null
+    },
+    "filiere": {
+     "type": "Filiere",
+     "assoc": null
+    },
+    "categorie": {
+     "type": "CategorieConseil",
+     "assoc": null
+    },
+    "auteur": {
+     "type": "Veterinaire",
+     "assoc": "ManyToOne"
+    },
+    "statut": {
+     "type": "StatutConseil",
+     "assoc": null
+    },
+    "dateSoumission": {
+     "type": "Instant",
+     "assoc": null
+    },
+    "datePublication": {
+     "type": "Instant",
+     "assoc": null
+    },
+    "moderateur": {
+     "type": "Administrateur",
+     "assoc": "ManyToOne"
+    },
+    "motifRetrait": {
+     "type": "String",
+     "assoc": null
+    },
+    "nombreLectures": {
+     "type": "int",
+     "assoc": null
+    }
+   },
+   "entite": true,
+   "super": false
+  }
+ },
+ "plat": {
+  "EntiteBase": {
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "EvenementSanitaire": {
+   "unite": {
+    "type": "UniteElevage",
+    "assoc": "ManyToOne"
+   },
+   "type": {
+    "type": "TypeEvenement",
+    "assoc": null
+   },
+   "dateEvenement": {
+    "type": "LocalDate",
+    "assoc": null
+   },
+   "produitObservation": {
+    "type": "String",
+    "assoc": null
+   },
+   "auteur": {
+    "type": "Utilisateur",
+    "assoc": "ManyToOne"
+   },
+   "veterinaire": {
+    "type": "Veterinaire",
+    "assoc": "ManyToOne"
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "PosteCout": {
+   "typeElevage": {
+    "type": "TypeElevage",
+    "assoc": "ManyToOne"
+   },
+   "libelle": {
+    "type": "String",
+    "assoc": null
+   },
+   "montant": {
+    "type": "long",
+    "assoc": null
+   },
+   "unite": {
+    "type": "String",
+    "assoc": null
+   },
+   "phase": {
+    "type": "PhaseCout",
+    "assoc": null
+   },
+   "modeQuantite": {
+    "type": "ModeQuantite",
+    "assoc": null
+   },
+   "coefficient": {
+    "type": "BigDecimal",
+    "assoc": null
+   },
+   "ordre": {
+    "type": "int",
+    "assoc": null
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "TypeElevage": {
+   "filiere": {
+    "type": "Filiere",
+    "assoc": null
+   },
+   "libelle": {
+    "type": "String",
+    "assoc": null
+   },
+   "dureeCycleJours": {
+    "type": "Integer",
+    "assoc": null
+   },
+   "modeEvaluation": {
+    "type": "ModeEvaluation",
+    "assoc": null
+   },
+   "capaciteReference": {
+    "type": "int",
+    "assoc": null
+   },
+   "espaceParSujetM2": {
+    "type": "BigDecimal",
+    "assoc": null
+   },
+   "temperatureMin": {
+    "type": "Integer",
+    "assoc": null
+   },
+   "temperatureMax": {
+    "type": "Integer",
+    "assoc": null
+   },
+   "alimentParSujetKg": {
+    "type": "BigDecimal",
+    "assoc": null
+   },
+   "eauParSujetJourL": {
+    "type": "BigDecimal",
+    "assoc": null
+   },
+   "vaccinsObligatoires": {
+    "type": "String",
+    "assoc": null
+   },
+   "tauxMortalite": {
+    "type": "BigDecimal",
+    "assoc": null
+   },
+   "difficulte": {
+    "type": "NiveauDifficulte",
+    "assoc": null
+   },
+   "actif": {
+    "type": "boolean",
+    "assoc": null
+   },
+   "postesCout": {
+    "type": "List<PosteCout>",
+    "assoc": "OneToMany"
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "JetonAppareil": {
+   "utilisateur": {
+    "type": "Utilisateur",
+    "assoc": "ManyToOne"
+   },
+   "jeton": {
+    "type": "String",
+    "assoc": null
+   },
+   "plateforme": {
+    "type": "String",
+    "assoc": null
+   },
+   "actif": {
+    "type": "boolean",
+    "assoc": null
+   },
+   "derniereUtilisation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "Zone": {
+   "nom": {
+    "type": "String",
+    "assoc": null
+   },
+   "region": {
+    "type": "String",
+    "assoc": null
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "MouvementCheptel": {
+   "unite": {
+    "type": "UniteElevage",
+    "assoc": "ManyToOne"
+   },
+   "type": {
+    "type": "TypeMouvement",
+    "assoc": null
+   },
+   "dateMouvement": {
+    "type": "LocalDate",
+    "assoc": null
+   },
+   "nombreTetes": {
+    "type": "int",
+    "assoc": null
+   },
+   "observation": {
+    "type": "String",
+    "assoc": null
+   },
+   "montant": {
+    "type": "Long",
+    "assoc": null
+   },
+   "auteur": {
+    "type": "Utilisateur",
+    "assoc": "ManyToOne"
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "Notification": {
+   "destinataire": {
+    "type": "Utilisateur",
+    "assoc": "ManyToOne"
+   },
+   "type": {
+    "type": "TypeNotification",
+    "assoc": null
+   },
+   "titre": {
+    "type": "String",
+    "assoc": null
+   },
+   "corps": {
+    "type": "String",
+    "assoc": null
+   },
+   "lue": {
+    "type": "boolean",
+    "assoc": null
+   },
+   "referenceType": {
+    "type": "String",
+    "assoc": null
+   },
+   "referenceId": {
+    "type": "Long",
+    "assoc": null
+   },
+   "statutEnvoi": {
+    "type": "StatutEnvoi",
+    "assoc": null
+   },
+   "dateEnvoi": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "tentativesEnvoi": {
+    "type": "int",
+    "assoc": null
+   },
+   "erreurEnvoi": {
+    "type": "String",
+    "assoc": null
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "SignalementMaladie": {
+   "eleveur": {
+    "type": "Eleveur",
+    "assoc": "ManyToOne"
+   },
+   "unite": {
+    "type": "UniteElevage",
+    "assoc": "ManyToOne"
+   },
+   "symptomes": {
+    "type": "Set<Long>",
+    "assoc": "ElementCollection"
+   },
+   "trancheEffectif": {
+    "type": "TrancheEffectif",
+    "assoc": null
+   },
+   "precision": {
+    "type": "String",
+    "assoc": null
+   },
+   "dateSignalement": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "maladieProbable": {
+    "type": "Maladie",
+    "assoc": "ManyToOne"
+   },
+   "probabilite": {
+    "type": "BigDecimal",
+    "assoc": null
+   },
+   "maladieAlternative": {
+    "type": "Maladie",
+    "assoc": "ManyToOne"
+   },
+   "probabiliteAlternative": {
+    "type": "BigDecimal",
+    "assoc": null
+   },
+   "gravite": {
+    "type": "NiveauGravite",
+    "assoc": null
+   },
+   "statut": {
+    "type": "StatutSignalement",
+    "assoc": null
+   },
+   "veterinaire": {
+    "type": "Veterinaire",
+    "assoc": "ManyToOne"
+   },
+   "dateOrientation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateTraitement": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "compteRendu": {
+    "type": "String",
+    "assoc": null
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "Maladie": {
+   "nom": {
+    "type": "String",
+    "assoc": null
+   },
+   "gravite": {
+    "type": "NiveauGravite",
+    "assoc": null
+   },
+   "filieres": {
+    "type": "Set<Filiere>",
+    "assoc": "ElementCollection"
+   },
+   "symptomesTexte": {
+    "type": "String",
+    "assoc": null
+   },
+   "traitement": {
+    "type": "String",
+    "assoc": null
+   },
+   "orienteVersVeterinaire": {
+    "type": "boolean",
+    "assoc": null
+   },
+   "active": {
+    "type": "boolean",
+    "assoc": null
+   },
+   "symptomes": {
+    "type": "Set<MaladieSymptome>",
+    "assoc": "OneToMany"
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "CodeReinitialisation": {
+   "utilisateur": {
+    "type": "Utilisateur",
+    "assoc": "ManyToOne"
+   },
+   "empreinteCode": {
+    "type": "String",
+    "assoc": null
+   },
+   "expireLe": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "utilise": {
+    "type": "boolean",
+    "assoc": null
+   },
+   "tentatives": {
+    "type": "int",
+    "assoc": null
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "Veterinaire": {
+   "zoneIntervention": {
+    "type": "Zone",
+    "assoc": "ManyToOne"
+   },
+   "titre": {
+    "type": "String",
+    "assoc": null
+   },
+   "specialite": {
+    "type": "String",
+    "assoc": null
+   },
+   "disponible": {
+    "type": "boolean",
+    "assoc": null
+   },
+   "competences": {
+    "type": "Set<Competence>",
+    "assoc": "OneToMany"
+   },
+   "nom": {
+    "type": "String",
+    "assoc": null
+   },
+   "email": {
+    "type": "String",
+    "assoc": null
+   },
+   "telephone": {
+    "type": "String",
+    "assoc": null
+   },
+   "motDePasse": {
+    "type": "String",
+    "assoc": null
+   },
+   "zone": {
+    "type": "Zone",
+    "assoc": "ManyToOne"
+   },
+   "langue": {
+    "type": "Langue",
+    "assoc": null
+   },
+   "actif": {
+    "type": "boolean",
+    "assoc": null
+   },
+   "dateInscription": {
+    "type": "LocalDate",
+    "assoc": null
+   },
+   "derniereConnexion": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "tentativesEchouees": {
+    "type": "int",
+    "assoc": null
+   },
+   "verrouilleJusquA": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "doitChangerMotDePasse": {
+    "type": "boolean",
+    "assoc": null
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "OperationFinanciere": {
+   "eleveur": {
+    "type": "Eleveur",
+    "assoc": "ManyToOne"
+   },
+   "type": {
+    "type": "TypeOperation",
+    "assoc": null
+   },
+   "categorie": {
+    "type": "CategorieOperation",
+    "assoc": null
+   },
+   "filiere": {
+    "type": "Filiere",
+    "assoc": null
+   },
+   "unite": {
+    "type": "UniteElevage",
+    "assoc": "ManyToOne"
+   },
+   "montant": {
+    "type": "long",
+    "assoc": null
+   },
+   "dateOperation": {
+    "type": "LocalDate",
+    "assoc": null
+   },
+   "note": {
+    "type": "String",
+    "assoc": null
+   },
+   "mouvement": {
+    "type": "MouvementCheptel",
+    "assoc": null
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "MaladieSymptome": {
+   "maladie": {
+    "type": "Maladie",
+    "assoc": "ManyToOne"
+   },
+   "symptome": {
+    "type": "Symptome",
+    "assoc": "ManyToOne"
+   },
+   "poids": {
+    "type": "BigDecimal",
+    "assoc": null
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "Utilisateur": {
+   "nom": {
+    "type": "String",
+    "assoc": null
+   },
+   "email": {
+    "type": "String",
+    "assoc": null
+   },
+   "telephone": {
+    "type": "String",
+    "assoc": null
+   },
+   "motDePasse": {
+    "type": "String",
+    "assoc": null
+   },
+   "zone": {
+    "type": "Zone",
+    "assoc": "ManyToOne"
+   },
+   "langue": {
+    "type": "Langue",
+    "assoc": null
+   },
+   "actif": {
+    "type": "boolean",
+    "assoc": null
+   },
+   "dateInscription": {
+    "type": "LocalDate",
+    "assoc": null
+   },
+   "derniereConnexion": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "tentativesEchouees": {
+    "type": "int",
+    "assoc": null
+   },
+   "verrouilleJusquA": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "doitChangerMotDePasse": {
+    "type": "boolean",
+    "assoc": null
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "UniteElevage": {
+   "code": {
+    "type": "String",
+    "assoc": null
+   },
+   "proprietaire": {
+    "type": "Eleveur",
+    "assoc": "ManyToOne"
+   },
+   "typeElevage": {
+    "type": "TypeElevage",
+    "assoc": "ManyToOne"
+   },
+   "statut": {
+    "type": "StatutUnite",
+    "assoc": null
+   },
+   "dateEntree": {
+    "type": "LocalDate",
+    "assoc": null
+   },
+   "dateSortie": {
+    "type": "LocalDate",
+    "assoc": null
+   },
+   "note": {
+    "type": "String",
+    "assoc": null
+   },
+   "mouvements": {
+    "type": "List<MouvementCheptel>",
+    "assoc": "OneToMany"
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "Administrateur": {
+   "nom": {
+    "type": "String",
+    "assoc": null
+   },
+   "email": {
+    "type": "String",
+    "assoc": null
+   },
+   "telephone": {
+    "type": "String",
+    "assoc": null
+   },
+   "motDePasse": {
+    "type": "String",
+    "assoc": null
+   },
+   "zone": {
+    "type": "Zone",
+    "assoc": "ManyToOne"
+   },
+   "langue": {
+    "type": "Langue",
+    "assoc": null
+   },
+   "actif": {
+    "type": "boolean",
+    "assoc": null
+   },
+   "dateInscription": {
+    "type": "LocalDate",
+    "assoc": null
+   },
+   "derniereConnexion": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "tentativesEchouees": {
+    "type": "int",
+    "assoc": null
+   },
+   "verrouilleJusquA": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "doitChangerMotDePasse": {
+    "type": "boolean",
+    "assoc": null
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "Eleveur": {
+   "filieresPratiquees": {
+    "type": "Set<Filiere>",
+    "assoc": "ElementCollection"
+   },
+   "nom": {
+    "type": "String",
+    "assoc": null
+   },
+   "email": {
+    "type": "String",
+    "assoc": null
+   },
+   "telephone": {
+    "type": "String",
+    "assoc": null
+   },
+   "motDePasse": {
+    "type": "String",
+    "assoc": null
+   },
+   "zone": {
+    "type": "Zone",
+    "assoc": "ManyToOne"
+   },
+   "langue": {
+    "type": "Langue",
+    "assoc": null
+   },
+   "actif": {
+    "type": "boolean",
+    "assoc": null
+   },
+   "dateInscription": {
+    "type": "LocalDate",
+    "assoc": null
+   },
+   "derniereConnexion": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "tentativesEchouees": {
+    "type": "int",
+    "assoc": null
+   },
+   "verrouilleJusquA": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "doitChangerMotDePasse": {
+    "type": "boolean",
+    "assoc": null
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "Competence": {
+   "veterinaire": {
+    "type": "Veterinaire",
+    "assoc": "ManyToOne"
+   },
+   "maladie": {
+    "type": "Maladie",
+    "assoc": "ManyToOne"
+   },
+   "dateDeclaration": {
+    "type": "LocalDate",
+    "assoc": null
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "Animal": {
+   "race": {
+    "type": "String",
+    "assoc": null
+   },
+   "sexe": {
+    "type": "Sexe",
+    "assoc": null
+   },
+   "dateNaissance": {
+    "type": "LocalDate",
+    "assoc": null
+   },
+   "present": {
+    "type": "int",
+    "assoc": null
+   },
+   "code": {
+    "type": "String",
+    "assoc": null
+   },
+   "proprietaire": {
+    "type": "Eleveur",
+    "assoc": "ManyToOne"
+   },
+   "typeElevage": {
+    "type": "TypeElevage",
+    "assoc": "ManyToOne"
+   },
+   "statut": {
+    "type": "StatutUnite",
+    "assoc": null
+   },
+   "dateEntree": {
+    "type": "LocalDate",
+    "assoc": null
+   },
+   "dateSortie": {
+    "type": "LocalDate",
+    "assoc": null
+   },
+   "note": {
+    "type": "String",
+    "assoc": null
+   },
+   "mouvements": {
+    "type": "List<MouvementCheptel>",
+    "assoc": "OneToMany"
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "RappelSanitaire": {
+   "unite": {
+    "type": "UniteElevage",
+    "assoc": "ManyToOne"
+   },
+   "calendrier": {
+    "type": "CalendrierSanitaire",
+    "assoc": "ManyToOne"
+   },
+   "libelle": {
+    "type": "String",
+    "assoc": null
+   },
+   "dateEcheance": {
+    "type": "LocalDate",
+    "assoc": null
+   },
+   "statut": {
+    "type": "StatutRappel",
+    "assoc": null
+   },
+   "evenement": {
+    "type": "EvenementSanitaire",
+    "assoc": "ManyToOne"
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "Symptome": {
+   "libelle": {
+    "type": "String",
+    "assoc": null
+   },
+   "ordre": {
+    "type": "int",
+    "assoc": null
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "Lot": {
+   "effectifInitial": {
+    "type": "int",
+    "assoc": null
+   },
+   "effectifRestant": {
+    "type": "int",
+    "assoc": null
+   },
+   "dateCloturePrevue": {
+    "type": "LocalDate",
+    "assoc": null
+   },
+   "code": {
+    "type": "String",
+    "assoc": null
+   },
+   "proprietaire": {
+    "type": "Eleveur",
+    "assoc": "ManyToOne"
+   },
+   "typeElevage": {
+    "type": "TypeElevage",
+    "assoc": "ManyToOne"
+   },
+   "statut": {
+    "type": "StatutUnite",
+    "assoc": null
+   },
+   "dateEntree": {
+    "type": "LocalDate",
+    "assoc": null
+   },
+   "dateSortie": {
+    "type": "LocalDate",
+    "assoc": null
+   },
+   "note": {
+    "type": "String",
+    "assoc": null
+   },
+   "mouvements": {
+    "type": "List<MouvementCheptel>",
+    "assoc": "OneToMany"
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "Alerte": {
+   "maladie": {
+    "type": "Maladie",
+    "assoc": "ManyToOne"
+   },
+   "zone": {
+    "type": "Zone",
+    "assoc": "ManyToOne"
+   },
+   "filiere": {
+    "type": "Filiere",
+    "assoc": null
+   },
+   "message": {
+    "type": "String",
+    "assoc": null
+   },
+   "portee": {
+    "type": "int",
+    "assoc": null
+   },
+   "dateDeclenchement": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateCloture": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "statut": {
+    "type": "StatutAlerte",
+    "assoc": null
+   },
+   "administrateur": {
+    "type": "Administrateur",
+    "assoc": "ManyToOne"
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "CalendrierSanitaire": {
+   "typeElevage": {
+    "type": "TypeElevage",
+    "assoc": "ManyToOne"
+   },
+   "libelle": {
+    "type": "String",
+    "assoc": null
+   },
+   "typeEvenement": {
+    "type": "TypeEvenement",
+    "assoc": null
+   },
+   "jourDuCycle": {
+    "type": "int",
+    "assoc": null
+   },
+   "obligatoire": {
+    "type": "boolean",
+    "assoc": null
+   },
+   "ordre": {
+    "type": "int",
+    "assoc": null
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "Session": {
+   "utilisateur": {
+    "type": "Utilisateur",
+    "assoc": "ManyToOne"
+   },
+   "empreinteJeton": {
+    "type": "String",
+    "assoc": null
+   },
+   "expireLe": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "revoquee": {
+    "type": "boolean",
+    "assoc": null
+   },
+   "appareil": {
+    "type": "String",
+    "assoc": null
+   },
+   "adresseIp": {
+    "type": "String",
+    "assoc": null
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  },
+  "Conseil": {
+   "titre": {
+    "type": "String",
+    "assoc": null
+   },
+   "contenu": {
+    "type": "String",
+    "assoc": null
+   },
+   "filiere": {
+    "type": "Filiere",
+    "assoc": null
+   },
+   "categorie": {
+    "type": "CategorieConseil",
+    "assoc": null
+   },
+   "auteur": {
+    "type": "Veterinaire",
+    "assoc": "ManyToOne"
+   },
+   "statut": {
+    "type": "StatutConseil",
+    "assoc": null
+   },
+   "dateSoumission": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "datePublication": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "moderateur": {
+    "type": "Administrateur",
+    "assoc": "ManyToOne"
+   },
+   "motifRetrait": {
+    "type": "String",
+    "assoc": null
+   },
+   "nombreLectures": {
+    "type": "int",
+    "assoc": null
+   },
+   "id": {
+    "type": "Long",
+    "assoc": null
+   },
+   "dateCreation": {
+    "type": "Instant",
+    "assoc": null
+   },
+   "dateModification": {
+    "type": "Instant",
+    "assoc": null
+   }
+  }
+ }
+}
