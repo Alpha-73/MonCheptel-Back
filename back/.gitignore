@@ -1,0 +1,19 @@
+# Secrets : ne JAMAIS commiter
+api/config/application.properties
+api/config/*.local.*
+*.env
+.env*
+*firebase*adminsdk*.json
+firebase-key*.json
+serviceAccount*.json
+
+# Construction
+target/
+*.class
+*.log
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.DS_Store
