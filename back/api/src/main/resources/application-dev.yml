@@ -1,0 +1,49 @@
+# Profil de developpement : lance avec --spring.profiles.active=dev
+#
+# Les valeurs ci-dessous ne sont PAS des secrets a proteger — la base est
+# locale et jetable. Le secret JWT en est un par sa forme, pas par son
+# usage : il ne signe que des jetons de developpement.
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/moncheptel_dev?useUnicode=true&characterEncoding=utf8&serverTimezone=Africa/Bamako&createDatabaseIfNotExist=true
+    username: ${MONCHEPTEL_DB_USER:root}
+    # Lu depuis l'environnement, avec un repli vide. Votre mot de passe MySQL
+    # n'a ainsi pas a etre ecrit dans un fichier du depot :
+    #   PowerShell  ->  $env:MONCHEPTEL_DB_PASSWORD = "votre-mot-de-passe"
+    #   bash        ->  export MONCHEPTEL_DB_PASSWORD='votre-mot-de-passe'
+    password: ${MONCHEPTEL_DB_PASSWORD:}
+
+  jpa:
+    # A FALSE VOLONTAIREMENT, et ce n'est pas une desactivation des traces SQL.
+    # `show-sql` ecrit les requetes sur la sortie standard, sans horodatage ni
+    # nom de fil d'execution. Le journaliseur `org.hibernate.SQL: DEBUG` plus
+    # bas affiche les MEMES requetes, mais horodatees et attribuees a un fil —
+    # et c'est lui qui se marie avec `orm.jdbc.bind: TRACE`, qui donne les
+    # valeurs. Laisser les deux actifs affichait chaque requete DEUX FOIS et
+    # rendait la console illisible pendant une demonstration.
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+
+moncheptel:
+  securite:
+    # 48 caracteres : au-dela des 32 octets exiges. A NE PAS reprendre
+    # ailleurs que sur un poste de developpement.
+    secret-jwt: developpement-moncheptel-secret-local-non-secret
+
+logging:
+  level:
+    ml.moncheptel: DEBUG
+    # Affiche les valeurs liees aux requetes : indispensable pour comprendre
+    # pourquoi une requete ne rend rien. A ne jamais activer en production,
+    # les parametres contiennent des donnees personnelles.
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
