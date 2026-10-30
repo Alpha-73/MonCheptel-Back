@@ -6,7 +6,7 @@ MonCheptel est une plateforme dédiée à la gestion des exploitations d'élevag
 
 - `back/api/` : API Java.
 
-Version principale uniquement, sans V2. Voir `LISEZ-MOI.md`, `GUIDE-ESSAI.md` et `CONTRIBUTING.md`.
+ `LISEZ-MOI.md`, `GUIDE-ESSAI.md` et `CONTRIBUTING.md`.
 
 Les configurations Firebase locales (`google-services.json`, `GoogleService-Info.plist`) sont exclues : les fournir separement pour activer les notifications.
 
